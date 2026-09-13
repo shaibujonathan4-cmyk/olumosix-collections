@@ -1,9 +1,9 @@
 // js/firebase-config.js
 // Uses the Firebase v10 modular SDK via CDN — no npm/build step needed.
+// Storage is intentionally not used here — image uploads go through Cloudinary instead (see js/cloudinary-config.js).
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getFirestore } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-import { getStorage } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-storage.js";
 import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
 const firebaseConfig = {
@@ -18,5 +18,4 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 export const db = getFirestore(app);
-export const storage = getStorage(app);
 export const auth = getAuth(app);

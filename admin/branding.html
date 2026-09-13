@@ -1,52 +1,53 @@
-<!-- admin/branding.html -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Branding — OLUMOSIX Admin</title>
-<link rel="stylesheet" href="css/admin.css">
-<link rel="icon" type="image/x-icon" href="../assets/icons/favicon.ico">
-<link rel="apple-touch-icon" sizes="180x180" href="../assets/icons/apple-touch-icon.png">
-<link rel="manifest" href="../site.webmanifest">
-<meta name="theme-color" content="#2B1D14">
-</head>
-<body>
+// admin/js/branding.js
+import { requireAdmin, logout } from "./auth.js";
+import { db } from "../../js/firebase-config.js";
+import { uploadToCloudinary } from "../../js/cloudinary-config.js";
+import { doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-<div class="admin-shell">
-  <aside class="admin-sidebar">
-    <img src="../assets/images/logo.png" alt="OLUMOSIX" class="site-logo">
-    <nav>
-      <a href="dashboard.html">Dashboard</a>
-      <a href="products.html">Products</a>
-      <a href="inquiries.html">Inquiries</a>
-      <a href="branding.html" class="active-link">Branding</a>
-      <a href="users.html">Users</a>
-    </nav>
-    <button id="logout-btn">Log Out</button>
-  </aside>
+document.getElementById("logout-btn").addEventListener("click", logout);
 
-  <main class="admin-main">
-    <h1>Branding</h1>
-    <p class="subtitle">Update the logo shown across the site and admin panel.</p>
+const preview = document.getElementById("current-logo-preview");
+const form = document.getElementById("branding-form");
+const statusEl = document.getElementById("branding-status");
+const saveBtn = document.getElementById("save-logo-btn");
 
-    <div class="branding-card">
-      <p class="field-hint">Current logo</p>
-      <img id="current-logo-preview" src="../assets/images/logo.png" alt="Current logo" class="logo-preview">
+requireAdmin(async () => {
+  try {
+    const settingsDoc = await getDoc(doc(db, "settings", "site"));
+    if (settingsDoc.exists() && settingsDoc.data().logoUrl) {
+      preview.src = settingsDoc.data().logoUrl;
+    }
+  } catch (err) {
+    console.error("Error loading current logo:", err);
+  }
+});
 
-      <form id="branding-form">
-        <label for="logo-file">Upload new logo</label>
-        <input type="file" id="logo-file" accept="image/*">
-        <p class="field-hint">Recommended: transparent PNG, roughly 200×60px.</p>
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const file = document.getElementById("logo-file").files[0];
+  if (!file) {
+    statusEl.textContent = "Choose an image file first.";
+    return;
+  }
 
-        <button type="submit" class="admin-btn primary" id="save-logo-btn">Update Logo</button>
-        <p id="branding-status"></p>
-      </form>
-    </div>
-  </main>
-</div>
+  saveBtn.disabled = true;
+  saveBtn.textContent = "Uploading...";
+  statusEl.textContent = "";
 
-<script type="module" src="js/branding.js"></script>
-<script type="module" src="../js/load-logo.js"></script>
-</body>
-</html>
+  try {
+    const logoUrl = await uploadToCloudinary(file);
+    await setDoc(doc(db, "settings", "site"), { logoUrl }, { merge: true });
+
+    preview.src = logoUrl;
+    statusEl.textContent = "Logo updated across the site.";
+    statusEl.className = "form-success";
+    form.reset();
+  } catch (err) {
+    console.error("Error updating logo:", err);
+    statusEl.textContent = "Something went wrong uploading the logo.";
+    statusEl.className = "form-error";
+  } finally {
+    saveBtn.disabled = false;
+    saveBtn.textContent = "Update Logo";
+  }
+});
