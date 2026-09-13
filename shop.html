@@ -1,0 +1,49 @@
+<!-- shop.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shop — OLUMOSIX</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#2B1D14">
+</head>
+<body>
+
+<header class="navbar">
+<a href="index.html" class="logo"><img src="assets/images/logo.png" alt="OLUMOSIX" class="site-logo"></a>
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="shop.html">Shop</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="page-header">
+  <h1>The Collection</h1>
+  <p>Every pair below is handmade to order. Tap a pair to inquire about sizing, leather choice, and delivery.</p>
+</section>
+
+<section class="section">
+  <div class="product-grid" id="product-grid">
+    <p id="loading-msg">Loading the collection…</p>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; <span id="year"></span> OLUMOSIX. Handmade leather shoes.</p>
+</footer>
+
+<script type="module" src="js/shop.js"></script>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+<script type="module" src="js/load-logo.js"></script>
+</body>
+</html>

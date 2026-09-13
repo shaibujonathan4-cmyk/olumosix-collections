@@ -1,0 +1,61 @@
+<!-- admin/inquiries.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inquiries — OLUMOSIX Admin</title>
+<link rel="stylesheet" href="css/admin.css">
+<link rel="icon" type="image/x-icon" href="../assets/icons/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="../assets/icons/apple-touch-icon.png">
+<link rel="manifest" href="../site.webmanifest">
+<meta name="theme-color" content="#2B1D14">
+</head>
+<body>
+
+<div class="admin-shell">
+  <aside class="admin-sidebar">
+    <img src="../assets/images/logo.png" alt="OLUMOSIX" class="site-logo">
+    <nav>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="products.html">Products</a>
+      <a href="inquiries.html" class="active-link">Inquiries</a>
+      <a href="branding.html">Branding</a>
+      <a href="users.html">Users</a>
+    </nav>
+    <button id="logout-btn">Log Out</button>
+  </aside>
+
+  <main class="admin-main">
+    <h1>Inquiries</h1>
+    <p class="subtitle">Customer messages from the Contact page.</p>
+
+    <div class="filter-bar">
+      <button class="admin-btn edit filter-btn active" data-filter="all">All</button>
+      <button class="admin-btn edit filter-btn" data-filter="new">New</button>
+      <button class="admin-btn edit filter-btn" data-filter="contacted">Contacted</button>
+      <button class="admin-btn edit filter-btn" data-filter="closed">Closed</button>
+    </div>
+
+    <table class="admin-table" id="inquiries-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Contact</th>
+          <th>Product</th>
+          <th>Message</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="inquiries-tbody">
+        <tr><td colspan="6">Loading inquiries...</td></tr>
+      </tbody>
+    </table>
+  </main>
+</div>
+
+<script type="module" src="js/inquiries.js"></script>
+<script type="module" src="../js/load-logo.js"></script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!-- admin/users.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Users — OLUMOSIX Admin</title>
+<link rel="stylesheet" href="css/admin.css">
+<link rel="icon" type="image/x-icon" href="../assets/icons/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="../assets/icons/apple-touch-icon.png">
+<link rel="manifest" href="../site.webmanifest">
+<meta name="theme-color" content="#2B1D14">
+</head>
+<body>
+
+<div class="admin-shell">
+  <aside class="admin-sidebar">
+    <img src="../assets/images/logo.png" alt="OLUMOSIX" class="site-logo">
+    <nav>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="products.html">Products</a>
+      <a href="inquiries.html">Inquiries</a>
+      <a href="branding.html">Branding</a>
+      <a href="users.html" class="active-link">Users</a>
+    </nav>
+    <button id="logout-btn">Log Out</button>
+  </aside>
+
+  <main class="admin-main">
+    <h1>Users</h1>
+    <p class="subtitle">Approve new admins or revoke access. Share this link for sign-ups: <code>/admin/signup.html</code></p>
+
+    <table class="admin-table" id="users-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Role</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="users-tbody">
+        <tr><td colspan="4">Loading users...</td></tr>
+      </tbody>
+    </table>
+  </main>
+</div>
+
+<script type="module" src="js/users.js"></script>
+<script type="module" src="../js/load-logo.js"></script>
+</body>
+</html>

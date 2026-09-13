@@ -1,0 +1,49 @@
+<!-- admin/dashboard.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard — OLUMOSIX Admin</title>
+<link rel="stylesheet" href="css/admin.css">
+<link rel="icon" type="image/x-icon" href="../assets/icons/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="../assets/icons/apple-touch-icon.png">
+<link rel="manifest" href="../site.webmanifest">
+<meta name="theme-color" content="#2B1D14">
+</head>
+<body>
+
+<div class="admin-shell">
+  <aside class="admin-sidebar">
+<img src="../assets/images/logo.png" alt="OLUMOSIX" class="site-logo">
+    <nav>
+      <a href="dashboard.html" class="active-link">Dashboard</a>
+      <a href="products.html">Products</a>
+      <a href="inquiries.html">Inquiries</a>
+      <a href="branding.html">Branding</a>
+      <a href="users.html">Users</a>
+    </nav>
+    <button id="logout-btn">Log Out</button>
+  </aside>
+
+  <main class="admin-main">
+    <h1>Welcome back<span id="admin-name"></span></h1>
+    <p class="subtitle">Here's what's happening with the shop.</p>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <p class="stat-number" id="stat-products">—</p>
+        <p class="stat-label">Products listed</p>
+      </div>
+      <div class="stat-card">
+        <p class="stat-number" id="stat-inquiries">—</p>
+        <p class="stat-label">New inquiries</p>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script type="module" src="js/dashboard.js"></script>
+<script type="module" src="../js/load-logo.js"></script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!-- admin/products.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Products — OLUMOSIX Admin</title>
+<link rel="stylesheet" href="css/admin.css">
+<link rel="icon" type="image/x-icon" href="../assets/icons/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="../assets/icons/apple-touch-icon.png">
+<link rel="manifest" href="../site.webmanifest">
+<meta name="theme-color" content="#2B1D14">
+</head>
+<body>
+
+<div class="admin-shell">
+  <aside class="admin-sidebar">
+    <img src="../assets/images/logo.png" alt="OLUMOSIX" class="site-logo">
+    <nav>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="products.html" class="active-link">Products</a>
+      <a href="inquiries.html">Inquiries</a>
+      <a href="branding.html">Branding</a>
+      <a href="users.html">Users</a>
+    </nav>
+    <button id="logout-btn">Log Out</button>
+  </aside>
+
+  <main class="admin-main">
+    <h1>Products</h1>
+    <p class="subtitle">Add, edit, or remove pairs from the live shop.</p>
+
+    <button class="admin-btn primary" id="add-product-btn">+ Add Product</button>
+
+    <table class="admin-table" id="products-table">
+      <thead>
+        <tr>
+          <th>Image</th>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Visible</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="products-tbody">
+        <tr><td colspan="5">Loading products...</td></tr>
+      </tbody>
+    </table>
+  </main>
+</div>
+
+<!-- Add/Edit Product Modal -->
+<div class="modal-overlay" id="product-modal">
+  <div class="modal-card">
+    <h2 id="modal-title">Add Product</h2>
+    <form id="product-form">
+      <input type="hidden" id="product-id">
+
+      <label for="p-name">Name</label>
+      <input type="text" id="p-name" required>
+
+      <label for="p-price">Price (₦)</label>
+      <input type="number" id="p-price" min="0" required>
+
+      <label for="p-image">Product Photo</label>
+      <input type="file" id="p-image" accept="image/*">
+      <p class="field-hint" id="current-image-hint"></p>
+
+      <label class="checkbox-label">
+        <input type="checkbox" id="p-visible" checked>
+        Visible on shop page
+      </label>
+
+      <div class="modal-actions">
+        <button type="button" class="admin-btn edit" id="cancel-modal-btn">Cancel</button>
+        <button type="submit" class="admin-btn primary" id="save-product-btn">Save Product</button>
+      </div>
+      <p id="product-form-status"></p>
+    </form>
+  </div>
+</div>
+
+<script type="module" src="js/products.js"></script>
+<script type="module" src="../js/load-logo.js"></script>
+</body>
+</html>

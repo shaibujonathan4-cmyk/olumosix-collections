@@ -1,0 +1,91 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OLUMOSIX — Handcrafted Leather Shoes</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#2B1D14">
+</head>
+<body>
+
+<header class="navbar">
+  <a href="index.html" class="logo"><img src="assets/images/logo.png" alt="OLUMOSIX" class="site-logo"></a>
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="shop.html">Shop</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="hero hero-split">
+  <div class="hero-copy">
+    <p class="hero-kicker">Handmade, pair by pair</p>
+    <h1>Shoes built to outlast the trend they were bought for.</h1>
+    <p class="hero-sub">Every OLUMOSIX pair is cut, stitched, and finished by hand in a small workshop — not stamped out on a line. Feel the difference the first time you put them on.</p>
+    <a href="shop.html" class="btn">Shop the Collection</a>
+  </div>
+  <div class="hero-image">
+    <img src="assets/images/hero.jpg" alt="Close-up of handcrafted OLUMOSIX leather shoe">
+  </div>
+</section>
+
+<section class="section craft-note">
+  <h2>Made the slow way, on purpose</h2>
+  <p class="craft-body">Machines can cut leather. They can't tell when a hide is ready, or when a stitch needs to be pulled tighter by hand. Every OLUMOSIX shoe passes through one maker's hands from raw leather to finished pair — which is why we only make a limited number at a time.</p>
+</section>
+
+<section class="section" id="featured">
+  <h2>From the workshop</h2>
+  <div class="product-grid">
+    <article class="product-card">
+      <img src="assets/images/product-1.jpg" alt="Product name">
+      <div class="info">
+        <h3>Product Name</h3>
+        <p class="price">₦0,000</p>
+        <a href="shop.html" class="btn-small">Inquire</a>
+      </div>
+    </article>
+    <article class="product-card">
+      <img src="assets/images/product-2.jpg" alt="Product name">
+      <div class="info">
+        <h3>Product Name</h3>
+        <p class="price">₦0,000</p>
+        <a href="shop.html" class="btn-small">Inquire</a>
+      </div>
+    </article>
+    <article class="product-card">
+      <img src="assets/images/product-3.jpg" alt="Product name">
+      <div class="info">
+        <h3>Product Name</h3>
+        <p class="price">₦0,000</p>
+        <a href="shop.html" class="btn-small">Inquire</a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="cta-band">
+  <h2>Have something specific in mind?</h2>
+  <p>We take custom orders — your size, your leather, your color.</p>
+  <a href="contact.html" class="btn btn-inverse">Start a Custom Order</a>
+</section>
+
+<footer>
+  <p>&copy; <span id="year"></span> OLUMOSIX. Handmade leather shoes.</p>
+</footer>
+
+<script src="js/main.js"></script>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+<script type="module" src="js/load-logo.js"></script>
+</body>
+</html>

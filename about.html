@@ -1,0 +1,78 @@
+<!-- about.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — OLUMOSIX</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#2B1D14">
+</head>
+<body>
+
+<header class="navbar">
+  <a href="index.html" class="logo"><img src="assets/images/logo.png" alt="OLUMOSIX" class="site-logo"></a>
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="shop.html">Shop</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="page-header">
+  <h1>One maker. One workshop. No shortcuts.</h1>
+  <p>The story behind OLUMOSIX — and why every pair takes as long as it takes.</p>
+</section>
+
+<section class="section about-story">
+  <div class="about-grid">
+    <img src="assets/images/maker.jpg" alt="OLUMOSIX shoemaker at work in the workshop" class="about-image">
+    <div class="about-text">
+      <p>[PLACEHOLDER — replace with your uncle's real story: how he learned the trade, how long he's been making shoes, what got him started.]</p>
+      <p>[PLACEHOLDER — a detail about his process: what leather he sources, how a pair is built from first cut to final stitch, what makes his approach different.]</p>
+      <p>OLUMOSIX isn't trying to be everywhere. It's trying to be worth the wait.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section values-section">
+  <h2>What doesn't change</h2>
+  <div class="values-grid">
+    <div class="value-item">
+      <h3>Built by hand</h3>
+      <p>No factory line. Every cut, stitch, and sole is placed by one person who's done it thousands of times.</p>
+    </div>
+    <div class="value-item">
+      <h3>Real leather, chosen carefully</h3>
+      <p>[PLACEHOLDER — name the leather type/source if your uncle wants that specificity, e.g. "full-grain cowhide, sourced locally."]</p>
+    </div>
+    <div class="value-item">
+      <h3>Made for you specifically</h3>
+      <p>Sizing, color, and small details can be adjusted per order — this isn't off-the-rack.</p>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <h2>Ready for a pair that's actually yours?</h2>
+  <p>Tell us what you're looking for and we'll walk you through it.</p>
+  <a href="contact.html" class="btn btn-inverse">Get in Touch</a>
+</section>
+
+<footer>
+  <p>&copy; <span id="year"></span> OLUMOSIX. Handmade leather shoes.</p>
+</footer>
+
+<script src="js/main.js"></script>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+<script type="module" src="js/load-logo.js"></script>
+</body>
+</html>

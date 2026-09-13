@@ -1,0 +1,52 @@
+<!-- admin/branding.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Branding — OLUMOSIX Admin</title>
+<link rel="stylesheet" href="css/admin.css">
+<link rel="icon" type="image/x-icon" href="../assets/icons/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="../assets/icons/apple-touch-icon.png">
+<link rel="manifest" href="../site.webmanifest">
+<meta name="theme-color" content="#2B1D14">
+</head>
+<body>
+
+<div class="admin-shell">
+  <aside class="admin-sidebar">
+    <img src="../assets/images/logo.png" alt="OLUMOSIX" class="site-logo">
+    <nav>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="products.html">Products</a>
+      <a href="inquiries.html">Inquiries</a>
+      <a href="branding.html" class="active-link">Branding</a>
+      <a href="users.html">Users</a>
+    </nav>
+    <button id="logout-btn">Log Out</button>
+  </aside>
+
+  <main class="admin-main">
+    <h1>Branding</h1>
+    <p class="subtitle">Update the logo shown across the site and admin panel.</p>
+
+    <div class="branding-card">
+      <p class="field-hint">Current logo</p>
+      <img id="current-logo-preview" src="../assets/images/logo.png" alt="Current logo" class="logo-preview">
+
+      <form id="branding-form">
+        <label for="logo-file">Upload new logo</label>
+        <input type="file" id="logo-file" accept="image/*">
+        <p class="field-hint">Recommended: transparent PNG, roughly 200×60px.</p>
+
+        <button type="submit" class="admin-btn primary" id="save-logo-btn">Update Logo</button>
+        <p id="branding-status"></p>
+      </form>
+    </div>
+  </main>
+</div>
+
+<script type="module" src="js/branding.js"></script>
+<script type="module" src="../js/load-logo.js"></script>
+</body>
+</html>

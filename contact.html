@@ -1,0 +1,65 @@
+<!-- contact.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — OLUMOSIX</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#2B1D14">
+</head>
+<body>
+
+<header class="navbar">
+  <a href="index.html" class="logo"><img src="assets/images/logo.png" alt="OLUMOSIX" class="site-logo"></a>
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="shop.html">Shop</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="page-header">
+  <h1>Let's talk about your pair.</h1>
+  <p>Send the details below and we'll get back to you with pricing, sizing, and timeline — usually within a day or two.</p>
+</section>
+
+<section class="section contact-section">
+  <form id="inquiry-form" class="inquiry-form">
+    <label for="name">Name</label>
+    <input type="text" id="name" name="name" required>
+
+    <label for="phone">Phone or WhatsApp number</label>
+    <input type="tel" id="phone" name="phone" required>
+
+    <label for="email">Email (optional)</label>
+    <input type="email" id="email" name="email">
+
+    <label for="product">Which pair are you asking about?</label>
+    <input type="text" id="product" name="product" placeholder="e.g. Oxford — Brown, or 'not sure yet'">
+
+    <label for="message">Details</label>
+    <textarea id="message" name="message" rows="5" placeholder="Size, color preference, delivery location, or anything else we should know." required></textarea>
+
+    <button type="submit" class="btn" id="submit-btn">Send Inquiry</button>
+    <p id="form-status"></p>
+  </form>
+</section>
+
+<footer>
+  <p>&copy; <span id="year"></span> OLUMOSIX. Handmade leather shoes.</p>
+</footer>
+
+<script type="module" src="js/contact.js"></script>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+<script type="module" src="js/load-logo.js"></script>
+</body>
+</html>

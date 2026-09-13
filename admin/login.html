@@ -1,0 +1,39 @@
+<!-- admin/login.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Login — OLUMOSIX</title>
+<link rel="stylesheet" href="css/admin.css">
+<link rel="icon" type="image/x-icon" href="../assets/icons/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="../assets/icons/apple-touch-icon.png">
+<link rel="manifest" href="../site.webmanifest">
+<meta name="theme-color" content="#2B1D14">
+</head>
+<body>
+
+<div class="login-wrap">
+  <form class="login-card" id="login-form">
+<img src="../assets/images/logo.png" alt="OLUMOSIX" class="site-logo">
+    <h1>Admin Login</h1>
+    <p>Sign in to manage products, branding, and inquiries.</p>
+
+    <label for="email">Email</label>
+    <input type="email" id="email" required>
+
+    <label for="password">Password</label>
+    <input type="password" id="password" required>
+
+    <button type="submit" id="login-btn">Sign In</button>
+    <p id="login-error"></p>
+  </form>
+  <p style="text-align:center; margin-top:1rem; font-size:0.9rem;">
+  New here? <a href="signup.html" style="color:var(--admin-accent); font-weight:600;">Create an account</a>
+</p>
+</div>
+
+<script type="module" src="js/auth.js"></script>
+<script type="module" src="../js/load-logo.js"></script>
+</body>
+</html>
