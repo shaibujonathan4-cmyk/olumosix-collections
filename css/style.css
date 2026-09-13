@@ -151,7 +151,6 @@ footer {
 /* --- Home page additions --- */
 .hero-split {
   height: auto;
-  min-height: 85vh;
   background: var(--color-bg);
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -510,6 +509,7 @@ body {
 .admin-btn.primary { background: var(--admin-primary); color: #fff; }
 
 @media (max-width: 768px) {
-  .admin-shell { flex-direction: column; }
-  .admin-sidebar { width: 100%; }
+  .hero-split { grid-template-columns: 1fr; padding: 2rem; text-align: center; }
+  .hero-copy h1 { max-width: none; }
+  .hero-image img { height: 300px; }
 }
