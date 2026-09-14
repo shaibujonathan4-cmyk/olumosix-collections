@@ -34,23 +34,26 @@
   <main class="admin-main">
     <h1>Products</h1>
     <p class="subtitle">Add, edit, or remove pairs from the live shop.</p>
+    <p id="debug-error" style="color:#a13a3a; font-weight:600; white-space:pre-wrap;"></p>
 
     <button class="admin-btn primary" id="add-product-btn">+ Add Product</button>
 
-    <table class="admin-table" id="products-table">
-      <thead>
-        <tr>
-          <th>Image</th>
-          <th>Name</th>
-          <th>Price</th>
-          <th>Visible</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody id="products-tbody">
-        <tr><td colspan="5">Loading products...</td></tr>
-      </tbody>
-    </table>
+    <div class="table-scroll">
+      <table class="admin-table" id="products-table">
+        <thead>
+          <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Visible</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="products-tbody">
+          <tr><td colspan="5">Loading products...</td></tr>
+        </tbody>
+      </table>
+    </div>
   </main>
 </div>
 
@@ -87,6 +90,14 @@
   </div>
 </div>
 
+<script>
+  window.addEventListener('error', (e) => {
+    document.getElementById('debug-error').textContent = 'Script error: ' + e.message + ' (' + e.filename + ':' + e.lineno + ')';
+  });
+  window.addEventListener('unhandledrejection', (e) => {
+    document.getElementById('debug-error').textContent = 'Promise error: ' + (e.reason?.message || e.reason);
+  });
+</script>
 <script type="module" src="js/products.js"></script>
 <script type="module" src="js/sidebar-toggle.js"></script>
 <script type="module" src="../js/load-logo.js"></script>
