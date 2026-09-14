@@ -1,12 +1,10 @@
 // admin/js/products.js
 import { requireAdmin, logout } from "./auth.js";
-import { db, storage } from "../../js/firebase-config.js";
+import { db } from "../../js/firebase-config.js";
+import { uploadToCloudinary } from "../../js/cloudinary-config.js";
 import {
   collection, addDoc, updateDoc, deleteDoc, doc, getDocs, orderBy, query, serverTimestamp
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-import {
-  ref, uploadBytes, getDownloadURL, deleteObject
-} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-storage.js";
 
 document.getElementById("logout-btn").addEventListener("click", logout);
 
@@ -19,7 +17,6 @@ const saveBtn = document.getElementById("save-product-btn");
 const currentImageHint = document.getElementById("current-image-hint");
 
 let editingId = null;
-let editingImagePath = null;
 
 requireAdmin(() => {
   loadProducts();
@@ -47,7 +44,7 @@ async function loadProducts() {
         <td>${p.visible ? "Yes" : "No"}</td>
         <td>
           <button class="admin-btn edit" data-id="${docSnap.id}">Edit</button>
-          <button class="admin-btn delete" data-id="${docSnap.id}" data-image-path="${p.imagePath || ''}">Delete</button>
+          <button class="admin-btn delete" data-id="${docSnap.id}">Delete</button>
         </td>
       `;
       tbody.appendChild(row);
@@ -69,7 +66,7 @@ function attachRowListeners(snapshot) {
   });
 
   tbody.querySelectorAll(".admin-btn.delete").forEach((btn) => {
-    btn.addEventListener("click", () => deleteProduct(btn.dataset.id, btn.dataset.imagePath));
+    btn.addEventListener("click", () => deleteProduct(btn.dataset.id));
   });
 }
 
@@ -78,7 +75,6 @@ document.getElementById("cancel-modal-btn").addEventListener("click", closeModal
 
 function openModal(id, data) {
   editingId = id;
-  editingImagePath = data?.imagePath || null;
   modalTitle.textContent = id ? "Edit Product" : "Add Product";
   document.getElementById("p-name").value = data?.name || "";
   document.getElementById("p-price").value = data?.price || "";
@@ -93,7 +89,6 @@ function closeModal() {
   modal.classList.remove("open");
   form.reset();
   editingId = null;
-  editingImagePath = null;
 }
 
 form.addEventListener("submit", async (e) => {
@@ -108,26 +103,17 @@ form.addEventListener("submit", async (e) => {
   const imageFile = document.getElementById("p-image").files[0];
 
   try {
-    let imageUrl, imagePath;
+    let imageUrl;
 
     if (imageFile) {
-      imagePath = `products/${Date.now()}-${imageFile.name}`;
-      const storageRef = ref(storage, imagePath);
-      await uploadBytes(storageRef, imageFile);
-      imageUrl = await getDownloadURL(storageRef);
-
-      // Remove old image if replacing one during edit
-      if (editingImagePath) {
-        deleteObject(ref(storage, editingImagePath)).catch(() => {});
-      }
+      saveBtn.textContent = "Uploading photo...";
+      imageUrl = await uploadToCloudinary(imageFile);
+      saveBtn.textContent = "Saving...";
     }
 
     if (editingId) {
       const updateData = { name, price, visible };
-      if (imageFile) {
-        updateData.imageUrl = imageUrl;
-        updateData.imagePath = imagePath;
-      }
+      if (imageUrl) updateData.imageUrl = imageUrl;
       await updateDoc(doc(db, "products", editingId), updateData);
     } else {
       await addDoc(collection(db, "products"), {
@@ -135,7 +121,6 @@ form.addEventListener("submit", async (e) => {
         price,
         visible,
         imageUrl: imageUrl || "",
-        imagePath: imagePath || "",
         createdAt: serverTimestamp()
       });
     }
@@ -151,13 +136,10 @@ form.addEventListener("submit", async (e) => {
   }
 });
 
-async function deleteProduct(id, imagePath) {
+async function deleteProduct(id) {
   if (!confirm("Delete this product? This can't be undone.")) return;
   try {
     await deleteDoc(doc(db, "products", id));
-    if (imagePath) {
-      deleteObject(ref(storage, imagePath)).catch(() => {});
-    }
     loadProducts();
   } catch (err) {
     console.error("Error deleting product:", err);

@@ -1,8 +1,8 @@
 // admin/js/branding.js
 import { requireAdmin, logout } from "./auth.js";
-import { db, storage } from "../../js/firebase-config.js";
+import { db } from "../../js/firebase-config.js";
+import { uploadToCloudinary } from "../../js/cloudinary-config.js";
 import { doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-import { ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-storage.js";
 
 document.getElementById("logout-btn").addEventListener("click", logout);
 
@@ -35,12 +35,8 @@ form.addEventListener("submit", async (e) => {
   statusEl.textContent = "";
 
   try {
-    const logoPath = `branding/logo-${Date.now()}-${file.name}`;
-    const storageRef = ref(storage, logoPath);
-    await uploadBytes(storageRef, file);
-    const logoUrl = await getDownloadURL(storageRef);
-
-    await setDoc(doc(db, "settings", "site"), { logoUrl, logoPath }, { merge: true });
+    const logoUrl = await uploadToCloudinary(file);
+    await setDoc(doc(db, "settings", "site"), { logoUrl }, { merge: true });
 
     preview.src = logoUrl;
     statusEl.textContent = "Logo updated across the site.";
